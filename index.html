@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap-icons/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <aside>
+        <div class="loading" >
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <b> الـرجـاء الانـتـظـار </p>
+    </aside>
+   
+
+    <article>
+        <h2> ... </h2>
+        <!-- <section id="choose_number_series"> -->
+            <!-- <div>
+                <b> الحلقة 12</b>
+                <button type="button"> مشاهدة </button>
+            </div>
+            <div>
+                <b> الحلقة 12</b>
+                <button type="button"> مشاهدة </button>
+            </div>
+            <div>
+                <b> الحلقة 12</b>
+                <button type="button"> مشاهدة </button>
+            </div>
+            <div>
+                <b> الحلقة 12</b>
+                <button type="button"> مشاهدة </button>
+            </div> -->
+        <!-- </section> -->
+
+        <div id="close">
+            <button type="button" >  اغــلاق <i id="eye" class="bi bi-eye-slash"></i> </button>
+        </div>
+
+    </article>
+
+    <header>
+        <div> 
+            <img src="./img/map.png" alt="" srcset="">
+            استراحة 
+        </div>
+
+        <a href="#" target="_blank" rel="noopener noreferrer"> حول </a>
+        <a href="#" target="_blank" rel="noopener noreferrer"> تواصل معنا </a>
+
+    </header>
+
+    <section id="option_series">
+        <select>
+            <option value="AllSeries"> الكل </option>
+            <!-- <option value=""> تركي </option>
+            <option value=""> مصري </option> -->
+        </select>
+        <input type="search" id="search" placeholder=" بــحــث ">
+        <button type="button" id="resume_true"> استئناف </button>
+    </section>
+
+    <!-- <img src="D:\map.png" width="100" height="400" alt="" srcset=""> -->
+    <main>
+        <!-- <div>
+            <b> 135 </b>
+            <img src="./img/img.jpg" alt="" srcset="">
+            <h4> عثمان </h4>
+            <h5> تركي </h5>
+            <button type="button"> عرض </button>
+        </div> -->
+    </main>
+
+    <footer>
+        <style>
+            
+            
+            /* Import Google font - Poppins */
+
+        </style>
+        <i id="double_up" class="bi bi-chevron-double-up"></i>
+        <!-- <i id="eye" class="bi bi-eye"></i> -->
+        <div>
+            <span class="bi bi-moon-fill"></span>
+            <!-- <i id="sun" class="bi bi-sun-fill"></i>
+            <i class="bi bi-moon-fill"></i> -->
+        </div>
+    </footer>
+
+    <!-- <script src="./boot/jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+
+            function moon () {
+                $("footer div span").css("color","gold")
+                $("footer div span").attr("class","bi bi-sun-fill")
+
+                $("body, header, #option_series, footer").css("background-color","rgb(30, 30, 30, 0.50)")
+                $("main div").css("background-color","rgba(19, 19, 19, 0.5)")
+                $("header :is(a,div), main div h4").css("color","azure")
+                $("main div h5").css("color","gold")
+                $("header").css("box-shadow","0 8px 8px -5px rgb(8, 0, 255)")
+                $("#option_series").css("box-shadow","0 8px 8px -5px rgb(255, 255, 255)")
+                $("footer").css("box-shadow","0 0 5px 5px rgb(243, 243, 243)")
+
+            }
+
+            function sun () {
+                $("footer div span").css("color","black")
+                $("footer div span").attr("class","bi bi-moon-fill")
+
+                $("body").css("background-color","white")
+                $("header").css("background-color","rgb(198, 198, 198)")
+                $("#option_series").css("background-color","rgba(175, 175, 175, 0.618)")
+                $("footer").css("background-color","rgb(175, 175, 175)")
+                $("main div").css("background-color","rgb(198, 198, 198)")
+                 
+                $("header :is(a,div), main div h4").css("color","black")
+
+                $("main div h5").css("color","blue")
+                $("header").css("box-shadow","0 8px 8px -5px rgb(8, 0, 255)")
+                $("#option_series").css("box-shadow","0 8px 8px -5px rgb(47, 47, 47)")
+                $("footer").css("box-shadow","0 0 5px 5px rgb(47, 47, 47)")
+            }
+
+            if(sessionStorage.getItem("mode_sun_moon")) {
+                if(sessionStorage.getItem("mode_sun_moon") == "sun") {
+                    $("footer div span").css("left","0")
+                    $("footer div span").css("right","65%")
+                    sun()
+                } else if (sessionStorage.getItem("mode_sun_moon") == "moon") {
+                    $("footer div span").css("right","0")
+                    $("footer div span").css("left","65%")
+                    moon()
+                }
+            }
+
+
+            // التحقق من وجود ملف لاستئنافة
+            if (localStorage.getItem("fileName") && localStorage.getItem("fileNumber") ) {
+                $("#resume_true").attr("disabled",false)
+            } else {
+                $("#resume_true").attr("disabled",true)
+            }
+
+
+            $("#resume_true").click(function () {
+
+                const add_value = "./video.html";
+                const link = document.createElement("a");
+                link.href = add_value;
+                link.click()
+
+                // window.open("./video.html")
+            })
+
+            function get_series(series_name) {
+
+                // $("article #choose_number_series div").remove()
+
+                $("aside").css("display","flex")
+
+                $("article h2").text(series_name)
+
+                let section = $("<section>")
+                    section.attr("id",'choose_number_series')
+                    section.attr("class",`choose_${series_name}`)
+               
+                $("article h2").after(section)
+
+                fetch(`./${series_name}.json`).then(response => response.json()).then(data => {
+                    
+                    // const element = array[index];
+
+                    for (const i in data) {
+
+                        let div = $("<div>")
+                        let b = $("<b>")
+                            b.text( " الحلقة " + data[i].number)
+                        let button = $("<button>")
+                            button.text(" مشاهدة ")
+
+                            const get_num = i.match(/\d+/g)[0]
+                            button.attr("id", get_num )
+
+                            // console.log(i.match(/\d+/g)[0]); استخراج الرقم من النص
+
+                        div.append(b,button);
+                        $(`article .choose_${series_name}`).append(div);
+
+                    }
+                
+                    
+                    // مشاهدة الحلقة
+                    $(`article .choose_${series_name} div button`).click(function () {
+                        
+                        // console.log($(this).attr("id"));
+
+                        let SName = $("article h2").text()
+                        let SNumber = $(this).attr("id")
+
+                        // const new_url = new URLSearchParams(window.location.search);
+                        // new_url.set("SName" , SName);
+                        // new_url.set("SNumber" , SNumber);
+
+                        localStorage.setItem("fileName",SName);
+                        localStorage.setItem("fileNumber",SNumber);
+
+                        // const add_value = window.location.pathname + "?" + new_url.toString();
+                        const add_value = `./video.html?SName=${SName}&SNumber=${SNumber}`;
+
+                        const link = document.createElement("a");
+                    
+                        link.href = add_value;
+                        link.target = "_blank";
+                        link.click();
+
+                    })
+
+                    $("aside").css("display","none")
+
+                    var number_div = $(`article .choose_${series_name} div`).length
+                    var x = 1;
+
+                    function animation() {
+                        
+                        if (number_div == 1) {
+                            $(`article .choose_${series_name} div:nth-child(1)`).css("animation","bg 1.5s infinite")
+                            return 0
+                        }
+                        
+                        $(`article .choose_${series_name} div`).css("animation","none")
+                        $(`article .choose_${series_name} div:nth-child(${x})`).css("animation","bg 1.5s reverse")
+                        
+                        x = x + 1
+                        
+                        if (x > number_div) {
+                            x = 1
+                        }
+
+                        setTimeout(() => {
+                            return animation()
+                        }, 1500);
+
+                    }
+                    animation()
+
+                }).catch(error => {
+                    console.log(error);
+                }) 
+            }
+        
+
+            fetch('./option.json').then(response => response.json()).then(data => {
+                for (const iterator in data) {
+
+                    fetch(`./series/${iterator}.json`).then(response => response.json()).then(get_data => {
+                        
+                        // console.log(iterator);
+
+                        let keys_number = Object.keys(get_data).length
+                        
+                        let div = $("<div>")
+                        let b = $("<b>")
+                            b.text(keys_number)
+                        let img = $("<img>")
+                            let path_img = data[iterator].img
+                            img.attr('src',`./${path_img}`)
+                            // img.attr('src',path_img)
+                        let h4 = $("<h4>")
+                            h4.text(iterator)
+                        let h5 = $("<h5>")
+                            let type_series = data[iterator].type
+                            h5.text(type_series)
+                        let option = $("<option>")
+                            option.val(type_series)
+                            option.text(type_series)
+
+                            let val = $("#option_series select").find("option[value='" + type_series + "']").length > 0
+
+                            if(!val) {
+                                $("#option_series select").append(option)
+                            }
+
+                        let button = $("<button>")
+                            button.text(" عرض ")
+                            button.attr("id",iterator)
+
+                        div.append(b,img,h4,h5,button);
+                        $("main").append(div);
+
+                        // عرض الحلقات
+                        $("main div button").click(function (e) {
+
+                            e.stopImmediatePropagation()
+
+                            let id = $(this).attr("id")
+
+                            if( $(`.choose_${id}`).length > 0 ) {
+                                $("article section").css("display","none")
+                                $(`article .choose_${id}`).css("display","flex")
+                            } else {
+                                $("article section").css("display","none")
+                                get_series(id)
+                            }
+
+                            $("article").css("display","flex")
+                        
+                        })
+
+                        // فلتره
+                        $("#option_series select").change(function () {
+                            let val_change = $(this).val()
+                            if(val_change == "AllSeries") {
+                                $("main div").css("display","flex")
+                            } else {
+                                $(`main div h5:not(:contains("${val_change}"))`).parents("div").css("display","none")
+                                $(`main div h5:contains("${val_change}")`).parents("div").css("display","flex")
+                            }
+                        })
+
+                        // بحث
+                        $("#search").on("input",function () {
+                        var text_search = $(this).val()
+
+                        if (text_search != '') {
+                            
+                            $("main div h4").each(function () {
+                                let val = $(this).text()
+                                if(!val.includes(text_search)) {
+                                    $(this).parents("div").css("display","none")
+                                } else {
+                                    $(this).parents("div").css("display","flex")
+                                }
+                            })
+
+                        } else {
+                            $("main div").css("display","flex")
+                        }
+
+                    })
+
+                    }).catch(error => {
+                        console.log(error);
+                    })
+
+                }
+
+
+            }).catch(error => {
+                console.log(error);
+            })
+
+
+            $("#close").click(function () {
+                $("article").css("display","none")
+            })
+            
+            $("#double_up").click(function () {
+                $("main").scrollTop(0)
+            })
+
+            // الوضع الداكن والمشرق
+            $("footer div span").click(function () {
+                let direction_left = $(this).css("left")
+                let direction_right = $(this).css("right")
+                let mode = '';
+
+                if(parseInt(direction_left) == 0) {
+                    $(this).css("right","0")
+                    $(this).css("left","65%")
+
+                    setTimeout(() => {
+                        moon()
+                        sessionStorage.setItem("mode_sun_moon","moon")
+                    }, 500);
+
+                } else if (parseInt(direction_right) == 0) {
+
+                    $(this).css("left","0")
+                    $(this).css("right","65%")
+
+                    setTimeout(() => {
+                        sun()
+                        sessionStorage.setItem("mode_sun_moon","sun")
+                    }, 500);
+
+                }
+
+
+            })
+            
+
+            // arr.forEach(element => {
+                
+            //     console.log(element);
+            // });
+
+            // for (const keys in arr) {
+            // }
+
+        })
+    </script>
+
+</body>
+</html>
